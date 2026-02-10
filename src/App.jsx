@@ -14,6 +14,7 @@ function App() {
       <Navbar />
       
       <main>
+         /** commetns by ar */
         <Home />
         {/* <About />
         <Services />
