@@ -13,6 +13,13 @@ function App() {
        
         <Home />
      
+
+
+
+
+
+
+     
       
         
         {/* Contact Section */}
