@@ -1,26 +1,19 @@
-import Navbar from './components/Navbar';
+
 import Footer from './components/Fotter';
 import Home from './components/Home';
-import About from './components/About';
-import Services from './components/Services';
-import Products from './components/Products';
-import Clients from './components/Clients';
-import WhyUs from './components/WhyUs';
+;
 import './index.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
+    <div className="">
+      {/* <Navbar /> */}
       
       <main>
-         /** commetns by ar */
+       
         <Home />
-        {/* <About />
-        <Services />
-        <Products />
-        <Clients />
-        <WhyUs /> */}
+     
+      
         
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-gradient-to-b from-white to-gray-50">

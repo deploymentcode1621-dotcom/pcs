@@ -159,7 +159,7 @@ const Footer = () => {
                   <div>
                     <h5 className="text-white text-sm font-semibold mb-1">Address</h5>
                     <p className="text-xs leading-relaxed">
-                      Govind Niwas, Shop No-01,<br />
+                      Govind Niwas, Shop No-01 & 02<br />
                       House No-1411, Near Bhairavnath Temple,<br />
                       Undri Gaon, Pune - 411060
                     </p>
@@ -190,13 +190,13 @@ const Footer = () => {
                   <div>
                     <h5 className="text-white text-sm font-semibold mb-1">Email</h5>
                     <a
-                      href="mailto:umeshkoli975@gmail.com"
+                      href="mailto:umesh@professionalcoolingservices.com"
                       className="text-xs hover:text-blue-400 transition-colors block break-all"
                     >
                       umeshkoli975@gmail.com
                     </a>
                     <a
-                      href="mailto:servicespcs15@gmail.com"
+                      href="mailto:services@professionalcoolingservuces.com"
                       className="text-xs hover:text-blue-400 transition-colors block break-all"
                     >
                       servicespcs15@gmail.com
