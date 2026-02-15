@@ -193,13 +193,15 @@ const Footer = () => {
                       href="mailto:umesh@professionalcoolingservices.com"
                       className="text-xs hover:text-blue-400 transition-colors block break-all"
                     >
-                      umeshkoli975@gmail.com
+                     
+info@professionalcoolingservices.com
                     </a>
                     <a
                       href="mailto:services@professionalcoolingservuces.com"
                       className="text-xs hover:text-blue-400 transition-colors block break-all"
                     >
-                      servicespcs15@gmail.com
+                      
+services@professionalcoolingservices.com
                     </a>
                   </div>
                 </div>
