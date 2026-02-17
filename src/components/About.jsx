@@ -1,185 +1,196 @@
-import { Target, Lightbulb, Users, Award, TrendingUp, Shield } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { Award, CheckCircle } from 'lucide-react';
+import logo_company from '../../public/logo new.png';
 
 const About = () => {
-  const visionMission = [
-    {
-      icon: Target,
-      title: 'Our Vision',
-      description:
-        'To be a leading HVAC solutions company recognized for innovation, quality execution, and energy-efficient climate control systems.',
-      color: 'blue',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Our Mission',
-      description:
-        'To provide advanced HVAC solutions that enhance comfort and productivity. To deliver projects on time with uncompromising quality standards. To promote energy efficiency and sustainable practices. To build long-term client relationships through reliable service and support.',
-      color: 'indigo',
-    },
-  ];
+  const leftContentRef = useRef(null);
+  const rightContentRef = useRef(null);
 
-  const values = [
-    {
-      icon: Award,
-      title: 'Quality Excellence',
-      description: 'Committed to delivering the highest quality HVAC solutions with attention to every detail.',
-    },
-    {
-      icon: Users,
-      title: 'Customer First',
-      description: 'Your comfort and satisfaction are at the heart of everything we do.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Innovation',
-      description: 'Leveraging latest technology and sustainable practices for optimal results.',
-    },
-    {
-      icon: Shield,
-      title: 'Reliability',
-      description: 'Trusted service with guaranteed performance and long-term support.',
-    },
-  ];
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
 
-  const stats = [
-    { number: '15+', label: 'Years of Excellence' },
-    { number: '500+', label: 'Successful Projects' },
-    { number: '50+', label: 'Expert Technicians' },
-    { number: '100%', label: 'Client Satisfaction' },
-  ];
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    if (leftContentRef.current) observer.observe(leftContentRef.current);
+    if (rightContentRef.current) observer.observe(rightContentRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="max-w-[1400px] mx-auto px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fadeInUp">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <Users className="w-4 h-4" />
-            About Professional Cooling Services
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-            Your Trusted HVAC Partner
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We are a trusted HVAC solutions provider delivering efficient, reliable, and sustainable 
-            cooling systems for residential, commercial, and industrial applications.
-          </p>
-        </div>
+    <>
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
 
-        {/* Company Story */}
-        <div className="mb-20 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-3xl font-bold text-blue-900 mb-4">
-                  Who We Are
-                </h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  With a strong focus on comfort, energy efficiency, and sustainability, we design and 
-                  implement customized HVAC solutions tailored to client needs.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Our expertise spans from system design and installation to maintenance and retrofitting, 
-                  ensuring optimal indoor air quality and long-term performance.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  We serve residential, commercial, and industrial sectors with world-class equipment 
-                  from trusted brands and a team of certified professionals.
-                </p>
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        .slide-left {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+
+        .slide-right {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+
+        .slide-left.animate-in {
+          animation: slideInLeft 1s ease-out forwards;
+        }
+
+        .slide-right.animate-in {
+          animation: slideInRight 1s ease-out forwards;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
+
+      <section id="about" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            
+            {/* Left Content - Slides in from LEFT */}
+            <div 
+              ref={leftContentRef}
+              className="space-y-4 sm:space-y-6 slide-left"
+            >
+              <div className="inline-block">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
+                  About Company
+                </h2>
+                <div className="h-1 sm:h-1.5 w-16 sm:w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-                  </div>
-                ))}
+
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                We specialize in designing, installing, and maintaining cutting-edge cooling solutions for 
+                residential, commercial, and industrial applications. With a focus on energy efficiency, 
+                reliability, and customer satisfaction, we help businesses optimize their HVAC infrastructure 
+                to ensure comfort, productivity, and cost savings while staying aligned with their needs.
+              </p>
+
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                Our expertise includes system design, installation, and maintenance of air conditioning and 
+                refrigeration systems tailored to residential, commercial, and industrial needs.
+              </p>
+              
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 shadow-lg border border-blue-200">
+                <div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900 mb-2 sm:mb-3 flex items-center gap-2">
+                    <Award className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-blue-600" />
+                    Our Vision
+                  </h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                    To be a leading HVAC solution company recognized for innovation, sustainability, 
+                    and exceptional client-driven service, demonstrating excellence and exemplary 
+                    performance.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900 mb-2 sm:mb-3 flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-blue-600" />
+                    Our Mission
+                  </h3>
+                  <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm md:text-base text-gray-700">
+                    <li className="flex items-start gap-2 sm:gap-3 transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>To provide innovative solutions that enhance comfort and productivity</span>
+                    </li>
+                    <li className="flex items-start gap-2 sm:gap-3 transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>To foster partnerships built on quality, trust, and value</span>
+                    </li>
+                    <li className="flex items-start gap-2 sm:gap-3 transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>To promote energy efficiency and sustainable practices</span>
+                    </li>
+                    <li className="flex items-start gap-2 sm:gap-3 transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>To build long-term client relationships through reliable support</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Vision & Mission */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-          {visionMission.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border border-gray-100 animate-fadeInUp"
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
-              >
-                <div className="mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 rounded-2xl flex items-center justify-center`}>
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-blue-900 mb-4">{item.title}</h3>
-                <p className="text-gray-700 leading-relaxed">{item.description}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Core Values */}
-        <div className="animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-blue-900 mb-4">Our Core Values</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The principles that guide our work and define our commitment to excellence
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div
-                  key={index}
-                  className="group bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all hover:-translate-y-2 border border-gray-100"
-                >
-                  <div className="mb-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Icon className="w-7 h-7 text-white" />
+            {/* Right Content - Slides in from RIGHT */}
+            <div 
+              ref={rightContentRef}
+              className="relative px-4 sm:px-0 slide-right"
+            >
+              <div className="aspect-square bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-transparent"></div>
+                
+                <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-8 md:p-12">
+                  <div className="text-center text-white relative z-10">
+                    {/* Replace with your logo image */}
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-70 md:h-40 mx-auto mb-4 sm:mb-6 md:mb-8 animate-float">
+                                        <img src={logo_company} alt="Logo" className="w-full h-full" />
+                      
                     </div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 drop-shadow-lg">
+                      Excellence in Cooling
+                    </h3>
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100 drop-shadow-md">
+                      Delivering comfort through innovation and expertise
+                    </p>
                   </div>
-                  <h4 className="text-lg font-bold text-blue-900 mb-3">{value.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
                 </div>
-              );
-            })}
-          </div>
-        </div>
 
-        {/* Certifications & Expertise */}
-        <div className="mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-8 md:p-12 text-center text-white animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
-          <h3 className="text-3xl font-bold mb-4">Certified & Trusted</h3>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-            Our commitment to excellence is backed by industry certifications and partnerships 
-            with leading HVAC manufacturers
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <span className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full font-semibold">
-              ISO Certified
-            </span>
-            <span className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full font-semibold">
-              Licensed Professionals
-            </span>
-            <span className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full font-semibold">
-              Fully Insured
-            </span>
-            <span className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full font-semibold">
-              24/7 Support
-            </span>
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                </div>
+              </div>
+
+              <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 -right-4 sm:-right-6 md:-right-8 w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-blue-200 rounded-full filter blur-3xl opacity-50 -z-10"></div>
+              <div className="absolute -top-4 sm:-top-6 md:-top-8 -left-4 sm:-left-6 md:-left-8 w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 bg-blue-300 rounded-full filter blur-3xl opacity-40 -z-10"></div>
+            </div>
+
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, ArrowUp, Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
+import logo_company from '../../public/logo new.png';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -57,19 +58,7 @@ const Footer = () => {
             {/* Company Info */}
             <div className="animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
               <div className="flex items-center gap-3 mb-6">
-                <div className="relative w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center overflow-hidden">
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer" />
-                  
-                  <svg
-                    className="w-7 h-7 fill-white relative z-10"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                    <circle cx="12" cy="12" r="3" fill="rgba(255,255,255,0.3)" />
-                  </svg>
-                </div>
+                <img src={logo_company} alt="Logo" className="w-10 h-10" />
 
                 <div className="flex flex-col">
                   <h3 className="text-xl font-bold text-white">PCS</h3>
